@@ -1,0 +1,33 @@
+{
+  "name": "clone-instagram-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --exec babel-node server",
+    "migrate": "npx prisma migrate dev",
+    "studio": "npx prisma studio"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaehojung7/clone-instagram-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jaehojung7/clone-instagram-backend/issues"
+  },
+  "homepage": "https://github.com/jaehojung7/clone-instagram-backend#readme",
+  "dependencies": {
+    "@prisma/client": "^3.3.0",
+    "apollo-server": "^2.25.2",
+    "graphql": "^15.6.1"
+  },
+  "devDependencies": {
+    "@babel/node": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "nodemon": "^2.0.14",
+    "prisma": "^3.3.0"
+  }
+}
