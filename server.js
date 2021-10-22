@@ -7,6 +7,11 @@ import schema from "./schema";
 const PORT = process.env.PORT;
 const server = new ApolloServer({
   schema,
+  context: async ({ req }) => {
+    return {
+      loggedInUser: await getUser(req.headers.token),
+    };
+  },
 });
 
 server
