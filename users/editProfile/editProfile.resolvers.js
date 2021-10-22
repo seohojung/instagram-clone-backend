@@ -6,8 +6,9 @@ export default {
     editProfile: async (
       _,
       { firstName, lastName, username, email, password: newPassword },
-      { user }
+      { loggedInUser }
     ) => {
+      console.log(loggedInUser);
       let uglyPassword = null;
       if (newPassword) {
         uglyPassword = await bcrypt.hash(newPassword, 10);
@@ -31,7 +32,7 @@ export default {
       } else {
         return {
           ok: false,
-          error: "Profile could not be updated.",
+          error: "Could not update profile.",
         };
       }
     },
