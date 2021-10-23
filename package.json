@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node server",
+    "preinstall": "npx npm-force-resolutions",
+    "dev": "nodemon --exec babel-node server --delay 2s",
     "migrate": "npx prisma migrate dev",
-    "studio": "npx prisma studio",
-    "start": "node server.js"
+    "studio": "npx prisma studio"
   },
   "repository": {
     "type": "git",
@@ -38,5 +38,8 @@
     "nodemon": "^2.0.14",
     "prisma": "^3.3.0"
   },
-  "description": ""
+  "resolutions": {
+    "fs-capacitor": "^6.2.0",
+    "graphql-upload": "^11.0.0"
+  }
 }
