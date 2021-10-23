@@ -116,8 +116,3 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-
-# Local files
-prisma/migrations/**
-package.json
-package-lock.json
