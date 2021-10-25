@@ -17,7 +17,18 @@ export default {
       client.like.count({
         where: { photoId: id },
       }),
+    comments: ({ id }) =>
+      client.comment.count({
+        where: { photoId: id },
+      }),
+    isMine: ({ userId }, _, { loggedInUser }) => {
+      if (!loggedInUser) {
+        return false;
+      }
+      return userId === loggedInUser.id;
+    },
   },
+
   Hashtag: {
     photos: ({ id }, { page }) => {
       return client.hashtag
