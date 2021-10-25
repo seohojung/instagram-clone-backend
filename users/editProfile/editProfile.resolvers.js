@@ -17,7 +17,7 @@ export default {
           bio,
           avatar,
         },
-        { loggedInUser, protectResolver }
+        { loggedInUser }
       ) => {
         let avatarUrl = null;
         if (avatar) {
