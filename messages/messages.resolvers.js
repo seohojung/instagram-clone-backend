@@ -12,19 +12,21 @@ export default {
     unreadTotal: ({ id }, _, { loggedInUser }) => {
       if (!loggedInUser) {
         return 0;
-      } else {
-        client.message.count({
-          where: {
-            read: false,
-            roomId: id,
-            user: {
-              id: {
-                not: loggedInUser.id,
-              },
+      }
+      return client.message.count({
+        where: {
+          read: false,
+          roomId: id,
+          user: {
+            id: {
+              not: loggedInUser.id,
             },
           },
-        });
-      }
+        },
+      });
     },
+  },
+  Message: {
+    user: ({ id }) => client.message.findUnique({ where: { id } }).user(),
   },
 };
