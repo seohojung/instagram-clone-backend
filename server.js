@@ -12,12 +12,33 @@ const PORT = process.env.PORT;
 const apollo = new ApolloServer({
   resolvers,
   typeDefs,
-  context: async ({ req }) => {
-    if (req) {
+  // Define context for both HTTP and WebSocket
+  context: async (ctx) => {
+    if (ctx.req) {
+      // HTTP
       return {
-        loggedInUser: await getUser(req.headers.token),
+        loggedInUser: await getUser(ctx.req.headers.token),
+      };
+    } else {
+      // WebSocket
+      return {
+        loggedInUser: ctx.connection.context.loggedInUser,
       };
     }
+  },
+  // Implementation of onConnect to allow only authorized user to listen to room updates
+  // The inputs of onConnect are HTTP parameters (whatever we want to take to the WebSocket side)
+  // The output of onConnect goes into the context of all resolvers on WebSocket
+  subscriptions: {
+    onConnect: async ({ token }) => {
+      if (!token) {
+        throw new Error("You must log in.");
+      }
+      const loggedInUser = await getUser(token);
+      return {
+        loggedInUser,
+      };
+    },
   },
 });
 
