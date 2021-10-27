@@ -18,10 +18,17 @@ export default {
         if (!room) {
           throw new Error("You shall not see this.");
         }
+        // https://www.apollographql.com/docs/apollo-server/data/subscriptions/#filtering-events
+        // withFilter requires 2 functions as arguments:
         return withFilter(
+          // first function returns asyncIterator
           () => pubsub.asyncIterator(NEW_MESSAGE),
-          ({ roomUpdates }, { id }) => {
-            return roomUpdates.roomId === id;
+          // second function returns true or false
+          // Input is in the form of (payload, variables)
+          // Also okay to unpack the objects and write ({ roomUpdates}, { id }) directly
+          // Here, payload refers to the content of our subscription (not to be confused with the text of sent messages)
+          (payload, variables) => {
+            return payload.roomUpdates.roomId === variables.id;
           }
         )(root, args, context, info);
       },

@@ -68,6 +68,7 @@ export default {
             },
           },
         });
+        // { name of subscription: { } }
         pubsub.publish(NEW_MESSAGE, { roomUpdates: { ...message } });
         return {
           ok: true,
