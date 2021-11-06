@@ -1,4 +1,5 @@
 import client from "../../client";
+import { uploadToS3 } from "../../common/common.utils";
 import { protectedResolver } from "../../users/users.utils";
 import { processHashtags } from "../photos.utils";
 
