@@ -7,6 +7,10 @@ AWS.config.update({
   },
 });
 
+// In case file upload does not work due to the version of GraphQLUpload
+// (Warning: [DEP0135] DeprecationWarning: ReadStream.prototype.open() is deprecated)
+// Go to package.json, set the version of "resolutions": {"fs-capacitor": "3.0.0"}
+// Run npm install
 export const uploadToS3 = async (file, userId, folderName) => {
   const { filename, createReadStream } = await file;
   const readStream = createReadStream();

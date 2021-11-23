@@ -44,7 +44,7 @@
     "prisma": "^3.3.0"
   },
   "resolutions": {
-    "fs-capacitor": "^6.2.0",
+    "fs-capacitor": "3.0.0",
     "graphql-upload": "^11.0.0"
   }
 }
